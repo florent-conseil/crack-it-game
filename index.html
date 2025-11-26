@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crack the code!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="floating-animations">
+        <div class="animated-item" style="--delay: 0s; --x-pos: 20%;">SCAN >></div>
+        <div class="animated-item" style="--delay: 3s; --x-pos: 80%;">INIT_PROC</div>
+        <div class="animated-item" style="--delay: 6s; --x-pos: 45%;">0101</div>
+        <div class="animated-item" style="--delay: 9s; --x-pos: 10%;">[CRITICAL]</div>
+        <div class="animated-item" style="--delay: 12s; --x-pos: 95%;">FIREWALL...</div>
+        <div class="animated-item" style="--delay: 15s; --x-pos: 30%;">PHISHING</div>
+        <div class="animated-item" style="--delay: 18s; --x-pos: 65%;">[SYSTEM]</div>
+    </div>
+    <div id="app-container">
+        <img src="logos/logo-blanc.png" alt="game logo Crack It!" id="main-logo">
+
+        <div id="setup-section">
+            <h2>HACK OR BE HACKED</h2>
+            <label for="players-input">Enter one player name per line (min 2 - max 4):</label>
+            <textarea id="players-input" rows="4">Player 1
+Player 2
+</textarea>
+            
+            <div id="terminal-selection-container" style="display: none;">
+                <pre id="terminal-output">ACCESSING PLAYER DATA...</pre>
+                <span id="terminal-cursor">█</span>
+            </div>
+
+            <button onclick="startGame()">START GAME</button>
+        </div>
+
+        <div id="game-section" style="display:none;">
+            <h2>WHO'S TURN?</h2>
+            <p>Current Player: <strong id="current-player"></strong></p>
+            <p>Dice Roll Result: 
+                <div id="dice-animation-container" style="display: none;">
+                    <div class="dice-face" data-face="1">⚀</div>
+                    <div class="dice-face" data-face="2">⚁</div>
+                    <div class="dice-face" data-face="3">⚂</div>
+                    <div class="dice-face" data-face="4">⚃</div>
+                    <div class="dice-face" data-face="5">⚄</div>
+                    <div class="dice-face" data-face="6">⚅</div>
+                </div>
+                <strong id="dice-result">?</strong>
+            </p>
+
+            <h3>Scores (First to 2 wins!)</h3>
+            <ul id="scores-list">
+                </ul>
+
+            <h2>QUESTIONS</h2>
+            <div id="timer-display">
+                TIME: <strong id="countdown" style="color:#FFFFFF;">--</strong>
+                <div id="progress-bar-container">
+                    <div id="timer-progress"></div>
+                </div>
+            </div> <div class="actions-group difficulty-buttons">
+                <button onclick="startTimer(5)" class="timer-btn easy-btn">EASY (5s)</button>
+                <button onclick="startTimer(7)" class="timer-btn medium-btn">MEDIUM (7s)</button>
+                <button onclick="startTimer(10)" class="timer-btn hard-btn">HARD (10s)</button>
+                <button onclick="startTimer(15)" class="timer-btn impossible-btn">IMPOSSIBLE (15s)</button>
+            </div>
+            <h2>ACTIONS</h2>
+            <div class="actions-group">
+                <button onclick="rollDice()">Roll Dice (1-6)</button>
+                <button onclick="addScore()">Award +1 Point to Current Player</button>
+            </div>
+            <button id="end-turn-btn" onclick="nextTurn()">End Turn ➡️</button>
+            <button onclick="restartGame()" id="restart-btn">Restart Game 🔄</button>
+        </div>
+
+        <div id="win-message" style="display:none;">
+            <h2>🎉 Victory!</h2>
+            <p id="winner-message"></p>
+            <button onclick="window.location.reload()">Start New Game</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+@keyframes code-scroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+body {
+    background-color: #272538;
+    background-image: repeating-linear-gradient(0deg, #3a384f, #3a384f 1px, transparent 1px, transparent 30px),
+                      repeating-linear-gradient(90deg, #3a384f, #3a384f 1px, transparent 1px, transparent 30px);
+    background-size: 30px 30px;
+    animation: code-scroll 60s linear infinite;
+    
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#app-container {
+    background-color: #1a1827cc;
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #f1841855;
+    max-width: 450px;
+    width: 100%;
+    border: 1px solid #f1841833;
+    z-index: 10;
+    position: relative; 
+}
+
+#main-logo {
+    display: block;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    margin: 0 auto 25px auto;
+    filter: drop-shadow(0 0 8px #f1841888);
+    border-bottom: 1px solid #f1841866;
+    padding-bottom: 15px;
+}
+
+h2 {
+    color: #FFFFFF;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-left: none;
+    padding-left: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.6em;
+}
+h2::before {
+    content: '> ';
+    color: #F18418;
+    font-size: 0.9em;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+    color: #F18418;
+}
+
+textarea#players-input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #0e0d16;
+    color: #FFFFFF;
+    border: 1px solid #F18418;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: inset 0 0 5px #f1841833;
+}
+
+/* --- BOUTONS GÉNÉRAUX --- */
+button {
+    background-color: transparent;
+    color: #F18418;
+    padding: 10px 15px;
+    border: 1px solid #F18418;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    box-shadow: 0 0 5px #f1841844;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #F18418;
+    color: #272538;
+    box-shadow: 0 0 10px #F18418;
+}
+
+.actions-group button {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 5px #ffffff44;
+}
+
+.actions-group button:hover {
+    background-color: #FFFFFF;
+    color: #272538;
+    box-shadow: 0 0 10px #FFFFFF;
+}
+
+#end-turn-btn {
+    width: 100%;
+    color: #F18418;
+    border: 1px solid #F18418;
+    box-shadow: 0 0 5px #f1841844;
+}
+
+#end-turn-btn:hover {
+    background-color: #F18418;
+    color: #272538;
+}
+
+/* --- AFFICHAGE DU JEU ET DÉS --- */
+
+#game-section strong {
+    color: #FF6961;
+    font-size: 1.2em;
+}
+
+#dice-result {
+    font-size: 1.6em;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+}
+
+#dice-animation-container {
+    width: 45px; 
+    height: 45px;
+}
+
+.dice-face {
+    background-color: #1a1827;
+    color: #F18418;
+    font-size: 2.2em;
+    border: 1px solid #F1841888;
+}
+
+@keyframes diceRoll {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+    25% { transform: translate(5px, -5px) rotate(45deg) scale(1.1); }
+    50% { transform: translate(-5px, 5px) rotate(-45deg) scale(0.9); }
+    75% { transform: translate(2px, -2px) rotate(15deg) scale(1.05); }
+    100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+}
+
+.rolling .dice-face {
+    animation: diceRoll 0.1s infinite alternate;
+}
+
+/* --- LISTE DES SCORES --- */
+#scores-list li {
+    color: #FFFFFF;
+    border-bottom: 1px dotted #FFFFFF33;
+}
+#scores-list li::before {
+    content: '→ ';
+    color: #F18418;
+}
+
+.current-player-score {
+    background-color: #F184181A !important;
+    color: #FFFFFF !important;
+    border-left: 3px solid #F18418;
+    text-shadow: 0 0 3px #F18418;
+}
+
+/* --- MESSAGE DE VICTOIRE --- */
+
+#win-message {
+    border: 3px solid #F18418;
+    background-color: #1a1827;
+    color: #FFFFFF;
+    box-shadow: 0 0 20px #f18418;
+}
+
+#winner-message {
+    color: #F18418;
+    text-shadow: 0 0 5px #FFFFFF;
+}
+
+/* --- TERMINAL HACKER --- */
+#terminal-selection-container {
+    background-color: #0e0d16;
+    border: 1px solid #4a4768;
+    padding: 15px;
+    margin: 20px 0;
+    font-family: 'Consolas', monospace;
+    font-size: 1.1em;
+    min-height: 50px;
+    box-shadow: inset 0 0 5px #1a1827;
+    display: flex;
+    align-items: center;
+}
+
+#terminal-output {
+    color: #F18418;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+}
+
+#terminal-cursor {
+    color: #F18418;
+    animation: blink 1s step-end infinite;
+    display: inline;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- STYLES DU TIMER & PROGRESS BAR --- */
+#timer-display {
+    border: 1px solid #FF696188;
+    background-color: #381a18;
+    box-shadow: 0 0 10px #FF696155;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+#countdown {
+    color: #FFFFFF;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    font-size: 2.2em;
+}
+
+#progress-bar-container {
+    width: 90%;
+    height: 10px;
+    background-color: #1a1827;
+    margin: 10px auto 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #4a4768;
+}
+
+#timer-progress {
+    height: 100%;
+    width: 100%;
+    background-color: #90EE90;
+    transform-origin: left;
+    transition: background-color 0.5s;
+}
+
+.low-time-progress #timer-progress {
+    background-color: #FF6961 !important;
+    box-shadow: 0 0 5px #FF6961;
+}
+
+.difficulty-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.timer-btn {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 5px #ffffff44;
+}
+
+.easy-btn {
+    border-color: #90EE90;
+    color: #90EE90;
+}
+.easy-btn:hover {
+    background-color: #90EE90;
+    color: #272538;
+    box-shadow: 0 0 10px #90EE90;
+}
+
+.medium-btn {
+    border-color: #F18418;
+    color: #F18418;
+}
+.medium-btn:hover {
+    background-color: #F18418;
+    color: #272538;
+    box-shadow: 0 0 10px #F18418;
+}
+
+.hard-btn {
+    border-color: #FF6961;
+    color: #FF6961;
+}
+.hard-btn:hover {
+    background-color: #FF6961;
+    color: #272538;
+    box-shadow: 0 0 10px #FF6961;
+}
+
+.impossible-btn {
+    border-color: #B22222;
+    color: #B22222;
+}
+.impossible-btn:hover {
+    background-color: #B22222;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px #B22222;
+}
+
+.timer-running {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* --- ÉLÉMENTS FLOTTANTS DE FOND --- */
+
+#floating-animations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.animated-item {
+    position: absolute;
+    bottom: -10%;
+    left: var(--x-pos);
+    
+    color: #F18418;
+    font-size: 1.2em;
+    opacity: 0;
+    
+    font-family: 'Consolas', monospace;
+    
+    animation: floatUp 25s linear infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    50% {
+        transform: translate(calc(var(--delay) * 2px), -60vh);
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translate(0, -120vh);
+        opacity: 0;
+    }
+}
